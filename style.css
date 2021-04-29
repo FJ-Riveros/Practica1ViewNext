@@ -1,0 +1,35 @@
+#barraEnviar,
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (min-width: 1200px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    max-width: 900px !important;
+  }
+}
+
+.font-weight-bold {
+  font-weight: 900;
+}
+
+.font-weight-medium {
+  font-weight: 600;
+}
+
+.btn-md {
+  width: 110px;
+}
+
+.min-height {
+  min-height: 90px;
+}
+
+.light-gray {
+  background-color: #f3f4f5 !important;
+}
