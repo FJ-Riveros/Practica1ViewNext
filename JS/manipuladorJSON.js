@@ -2,7 +2,7 @@
 var entradas = [];
 
 //Función que recibe los .value del form y los formatea a JSON para añadirlos a las entradas
-let creaNuevaEntrada = (
+export let creaNuevaEntrada = (
   nombreInput,
   descripcionInput,
   precioInput,
@@ -23,4 +23,4 @@ let creaNuevaEntrada = (
 let addNuevaEntrada = (nuevaEntrada) => entradas.push(nuevaEntrada);
 
 //Devolvemos el registro
-var obtenerEntradas = () => entradas;
+export var obtenerEntradas = () => entradas;

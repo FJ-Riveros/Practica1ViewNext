@@ -9,10 +9,8 @@ import {
   compruebaCamposVacios,
   exponeCamposVacios,
 } from "./compruebaCampos.js";
-import { adjuntarTarjeta } from "./adjuntaTarjetas.js";
-import { vaciarCampos, eliminaError } from "./modificadoresVisualesCampos.js";
-
-$().ready(() => {
+import { generadorCard } from "./adjuntaTarjetas.js";
+export let aplicaEventListennersYFiltros = () => {
   //Validamos el campo nombre y aplicamos el event listenner
   aplicaValidacionCaracteres(
     "#nombre",
@@ -27,28 +25,20 @@ $().ready(() => {
   //Validamos el campo Stock y aplicamos el event listenner
   filtroStock("#stock");
 
-  //Listener del envio del form
+  /*Listener del envio del form, inserta el nuevo artículo si todos los campos
+  son válidos y no hay ninguno vacio, de lo contrario expone los campos vacios
+  */
   $("#enviar").click((e) => {
     e.preventDefault();
     if (
       compruebaCampos(".campoInvalido") &&
       compruebaCamposVacios(".form-control")
     ) {
-      getValues();
+      //Comienza el proceso de generación de la Card
+      generadorCard();
     } else {
+      //Señala los campos vacios del form
       exponeCamposVacios(".form-control");
     }
   });
-});
-
-//Obtiene los valores del form, los introduce en el registro y resetea el form
-function getValues() {
-  let nombre = $("#nombre").val(),
-    descripcion = $("#descripcion").val(),
-    precio = $("#precio").val(),
-    stock = $("#stock").val();
-  creaNuevaEntrada(nombre, descripcion, precio, stock);
-  adjuntarTarjeta(obtenerEntradas());
-  vaciarCampos(".form-control");
-  eliminaError(".form-control");
-}
+};
