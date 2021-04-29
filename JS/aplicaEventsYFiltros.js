@@ -1,8 +1,7 @@
 import {
-  aplicaValidacionCaracteres,
-  filtroTextArea,
   filtroPrecio,
   filtroStock,
+  validacionYEventListenner,
 } from "./filtros.js";
 import {
   compruebaCampos,
@@ -11,13 +10,13 @@ import {
 } from "./compruebaCampos.js";
 import { generadorCard } from "./adjuntaTarjetas.js";
 export let aplicaEventListennersYFiltros = () => {
-  //Validamos el campo nombre y aplicamos el event listenner
-  aplicaValidacionCaracteres(
-    "#nombre",
-    "La descripción no puede contener números o carácteres especiales"
-  );
-  //Validamos el campo descripcion y aplicamos el event listenner
-  filtroTextArea("#descripcion");
+  /*Validamos el campo nombre y aplicamos el event listenner
+  junto con una restriccion de 15 caracteres max */
+  validacionYEventListenner("#nombre", 15);
+
+  /*Validamos el campo descripcion y aplicamos el event listenner
+  junto con una restriccion de 15 caracteres max */
+  validacionYEventListenner("#descripcion", 100);
 
   //Validamos el campo Precio y aplicamos el event listenner
   filtroPrecio("#precio");

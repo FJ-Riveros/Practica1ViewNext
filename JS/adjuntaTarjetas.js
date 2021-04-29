@@ -2,13 +2,37 @@ import { vaciarCampos, eliminaError } from "./modificadoresVisualesCampos.js";
 import { creaNuevaEntrada, obtenerEntradas } from "./manipuladorJSON.js";
 //Obtiene los valores del form, los introduce en el registro y resetea el form
 export function generadorCard() {
-  /*let nombre = $("#nombre").val(),
-    descripcion = $("#descripcion").val(),
-    precio = $("#precio").val(),
-    stock = $("#stock").val();*/
   let values = getValues();
   creaNuevaEntrada(values[0], values[1], values[2], values[3]);
-  adjuntarTarjeta(obtenerEntradas());
+  let entradas = obtenerEntradas();
+  adjuntarTarjeta(entradas);
+
+  //Añadir Event Listenner a la tarjeta
+  listennerCard(`#Card-${entradas.length}`);
+  function listennerCard(idCard) {
+    $(idCard).hover(
+      function () {
+        // over
+        $(idCard).css({
+          width: "20vw",
+          height: "200px",
+          "font-size": "20px",
+          "z-index": "10",
+        });
+        $(`${idCard} div.texto-principal`).css("height", "150px");
+      },
+      function () {
+        // out
+        $(idCard).css({
+          width: "auto",
+          height: "auto",
+          "font-size": "1rem",
+          "z-index": "0",
+        });
+        $(`${idCard} div.texto-principal`).css("height", "90px");
+      }
+    );
+  }
   //Vaciamos todos los campos
   vaciarCampos(".form-control");
   //Reseteamos los colores y mensajes del form
@@ -31,11 +55,11 @@ export const adjuntarTarjeta = (registro) => {
   $(".tarjetas").append(
     `
     <div class="col-sm-4 mb-4">
-      <div class="card shadow">
+      <div class="card shadow" id=Card-${registro.length}>
         <div class="card-header p-2 font-weight-bold light-gray">${
           registro[registro.length - 1].nombre
         }</div>
-        <div class=" text-secondary p-2 min-height">
+        <div class=" text-secondary p-2 min-height texto-principal">
           <p class="card-text">${registro[registro.length - 1].descripcion}</p>
         </div>
         <div class="row justify-content-between p-2 text-secondary">

@@ -5,31 +5,20 @@ import {
 } from "./modificadoresVisualesCampos.js";
 import { campoVacio } from "./compruebaCampos.js";
 
-//Aplica la validación del campo del formulario nombre junto con el mensaje de error
-export function aplicaValidacionCaracteres(idElemento, mensaje) {
+/*valida el campo que se le pase con restricciones de numero máximo de carácteres, sólo letras y
+añade el event listenner correspondiente*/
+export function validacionYEventListenner(idElemento, caracteresMax) {
   $(`${idElemento}`).focusout(() => {
     eliminaError(idElemento);
-    if (filtroSoloLetras(idElemento)) {
-      campoCorrecto(idElemento);
-    } else if (!campoVacio(idElemento)) {
-      adjuntaError(idElemento, mensaje);
-    }
-  });
-}
-
-//Filtro especifico para el campo descripcion (textArea)(menos de 100 carácteres, sólo letras y tildes)
-export function filtroTextArea(idElemento) {
-  $(`${idElemento}`).focusout(() => {
-    eliminaError(idElemento);
-    if (!filtroLongitud(idElemento)) {
+    if (!filtroLongitud(idElemento, caracteresMax)) {
       adjuntaError(
         idElemento,
-        "La longitud de la descripción debe de ser de 100 caracteres como máximo"
+        `La longitud debe de ser de ${caracteresMax} caracteres como máximo`
       );
     } else if (!filtroSoloLetras(idElemento) && !campoVacio(idElemento)) {
       adjuntaError(
         idElemento,
-        "La descripción no puede contener números o carácteres especiales"
+        "No puede contener números o carácteres especiales"
       );
     } else if (!campoVacio(idElemento)) {
       campoCorrecto(idElemento);
@@ -74,8 +63,8 @@ function filtroSoloLetras(idElemento) {
 
 /*Filtra devolviendo true si el campo que se le pasa contiene una longitud de carácteres
 menor a la indicada, devuelve false si es mayor*/
-function filtroLongitud(idElemento) {
-  if ($(`${idElemento}`).val().length < 100) return true;
+function filtroLongitud(idElemento, longitudRestriccion) {
+  if ($(`${idElemento}`).val().length < longitudRestriccion) return true;
   return false;
 }
 
