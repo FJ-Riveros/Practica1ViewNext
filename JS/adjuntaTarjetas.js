@@ -13,8 +13,9 @@ export function generadorCard() {
     $(idCard).hover(
       function () {
         // over
-        $(`${idCard}`).css("cursor", "pointer");
-        $(`${idCard} div.card-header object`).css("display", "unset");
+        //$(`${idCard}`).css("cursor", "pointer");
+        $(`${idCard} div.card-header img`).css("display", "unset");
+        $(`${idCard} div.card-header object`).click(() => console.log("hola"));
       },
       function () {
         // out
@@ -47,8 +48,8 @@ export const adjuntarTarjeta = (registro) => {
       <div class="card shadow" id=Card-${registro.length}>
         <div class="card-header p-2 font-weight-bold light-gray">${
           registro[registro.length - 1].nombre
-        }<object data="media/delete.svg" class="delete" type="image/svg+xml"></object>
-        <object data="media/modify.svg" class="modify" type="image/svg+xml"></object></div>
+        }<img src="media/basura.png" width="32px" height="32px" class="delete">
+        <img src="media/pencil.png" widht="30px" height="30px" class="modify"></div>
         <div class=" text-secondary p-2 min-height texto-principal">
           <p class="card-text">${registro[registro.length - 1].descripcion}</p>
         </div>
@@ -65,3 +66,27 @@ export const adjuntarTarjeta = (registro) => {
     `
   );
 };
+
+/*$(".tarjetas").append(
+    `
+    <div class="col-sm-4 mb-4">
+      <div class="card shadow" id=Card-${registro.length}>
+        <div class="card-header p-2 font-weight-bold light-gray">${
+          registro[registro.length - 1].nombre
+        }<img src="media/basura.png" width="32px" height="32px" class="delete">
+        <object data="media/modify.svg" class="modify" type="image/svg+xml"></object></div>
+        <div class=" text-secondary p-2 min-height texto-principal">
+          <p class="card-text">${registro[registro.length - 1].descripcion}</p>
+        </div>
+        <div class="row justify-content-between p-2 text-secondary">
+          <div class="col-4 font-weight-medium">
+              ${registro[registro.length - 1].precio}€
+            </div>
+            <div class=" col-5 flex-end font-weight-medium ">
+              Cantidad: ${registro[registro.length - 1].stock}
+            </div>
+          </div>
+      </div>
+    </div>
+    `
+  );*/

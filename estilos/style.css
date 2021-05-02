@@ -38,12 +38,22 @@
   display: none;
   position: absolute;
   right: 10px;
+  top: 5px;
   cursor: pointer;
 }
 
 .modify {
   display: none;
   position: absolute;
-  right: 35px;
+  right: 45px;
+  top: 5px;
   cursor: pointer;
+}
+
+svg {
+  pointer-events: none;
+}
+
+path {
+  pointer-events: none;
 }
