@@ -13,13 +13,17 @@ export function generadorCard() {
     $(idCard).hover(
       function () {
         // over
-        //$(`${idCard}`).css("cursor", "pointer");
         $(`${idCard} div.card-header img`).css("display", "unset");
-        $(`${idCard} div.card-header object`).click(() => console.log("hola"));
+        $(`${idCard} div.card-header img.modify`).click(() =>
+          console.log("modify")
+        );
+        $(`${idCard} div.card-header img.delete`).click(() =>
+          console.log("delete")
+        );
       },
       function () {
         // out
-        $(`${idCard} div.card-header object`).css("display", "none");
+        $(`${idCard} div.card-header img`).css("display", "none");
       }
     );
   }
