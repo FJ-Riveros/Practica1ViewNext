@@ -48,6 +48,9 @@
   right: 35px;
   top: 5px;
   cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url(../media/pencil.png);
 }
 
 svg {

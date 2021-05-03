@@ -42,7 +42,8 @@ export const adjuntarTarjeta = (registro, numRegistro) => {
     <div class="col-sm-4 mb-4">
       <div class="card shadow" id=Card-${numRegistro}>
         <div class="card-header p-2 font-weight-bold light-gray">${registro.nombre}<img src="${imagenDelete}" width="32px" height="32px" class="delete">
-        <img src="${imagenModificar}" widht="30px" height="30px" class="modify"></div>
+          <span role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight" class="modify"></span></div>
         <div class=" text-secondary p-2 min-height texto-principal">
           <p class="card-text">${registro.descripcion}</p>
         </div>

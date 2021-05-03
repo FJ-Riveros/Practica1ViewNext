@@ -16,7 +16,7 @@ export function destruyeDisplayCards() {
 
 //Aplica los listenners de las Cards
 export function listennerCard(idCard) {
-  $(`${idCard} div.card-header img.modify`).click(function () {
+  $(`${idCard} div.card-header img.modify`).click(function (e) {
     let id = $(this).parents(".card").attr("id").slice(5);
     console.log(id);
   });
@@ -31,10 +31,12 @@ export function listennerCard(idCard) {
     function () {
       // over
       $(`#${$(this).attr("id")} div.card-header img`).css("display", "unset");
+      $(`#${$(this).attr("id")} div.card-header span`).css("display", "unset");
     },
     function () {
       // out
       $(`#${$(this).attr("id")} div.card-header img`).css("display", "none");
+      $(`#${$(this).attr("id")} div.card-header span`).css("display", "none");
     }
   );
 }
