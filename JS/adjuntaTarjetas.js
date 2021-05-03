@@ -90,11 +90,11 @@ export function listennerCard(idCard) {
   $(idCard).hover(
     function () {
       // over
-      $(`${idCard} div.card-header img`).css("display", "unset");
+      $(`#${$(this).attr("id")} div.card-header img`).css("display", "unset");
     },
     function () {
       // out
-      $(`${idCard} div.card-header img`).css("display", "none");
+      $(`#${$(this).attr("id")} div.card-header img`).css("display", "none");
     }
   );
 }
