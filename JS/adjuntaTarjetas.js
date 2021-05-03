@@ -1,5 +1,10 @@
 import { vaciarCampos, eliminaError } from "./modificadoresVisualesCampos.js";
-import { creaNuevaEntrada, obtenerEntradas } from "./manipuladorJSON.js";
+import {
+  creaNuevaEntrada,
+  obtenerEntradas,
+  entradas,
+  eliminaEntrada,
+} from "./manipuladorJSON.js";
 //Obtiene los valores del form, los introduce en el registro y resetea el form
 export function generadorCard() {
   //Obtenemos los valores del registro
@@ -9,16 +14,10 @@ export function generadorCard() {
   creaNuevaEntrada(values[0], values[1], values[2], values[3]);
 
   //Obtenemos todos los valores del registro
-  let entradas = obtenerEntradas();
+  var entradasRegistro = obtenerEntradas();
 
-  //Elimina el display de las Cards
-  destruyeDisplayCards();
-
-  //Muestra las Cards alojadas en el registro
-  muestraCardsActuales(entradas);
-
-  //Listenner del contenido de las cards
-  listennerCard(".card");
+  //presenta las cards
+  presentacionCards(entradasRegistro, ".card");
 
   //Vaciamos todos los campos
   vaciarCampos(".form-control");
@@ -66,8 +65,8 @@ export const adjuntarTarjeta = (registro, numRegistro) => {
 };
 
 //Recorre el registro y muestra todas las Cards
-function muestraCardsActuales(entradas) {
-  for (let i = 0; i < entradas.length; i++) {
+function muestraCardsActuales(registro) {
+  for (let i = 0; i < registro.length; i++) {
     adjuntarTarjeta(entradas[i], i + 1);
   }
 }
@@ -85,7 +84,10 @@ export function listennerCard(idCard) {
   });
   $(`${idCard} div.card-header img.delete`).click(function () {
     let id = $(this).parents(".card").attr("id").slice(5);
-    console.log(id);
+    //Eliminamos la entrada
+    eliminaRegistro(id);
+    //Presentamos las entradas
+    presentacionCards(obtenerEntradas(), ".card");
   });
   $(idCard).hover(
     function () {
@@ -97,4 +99,20 @@ export function listennerCard(idCard) {
       $(`#${$(this).attr("id")} div.card-header img`).css("display", "none");
     }
   );
+}
+
+//Elimina el registro totalmente
+function eliminaRegistro(id) {
+  eliminaEntrada(id - 1);
+}
+
+function presentacionCards(entradasActuales, nameCard) {
+  //Elimina el display de las Cards
+  destruyeDisplayCards();
+
+  //Muestra las Cards alojadas en el registro
+  muestraCardsActuales(entradasActuales);
+
+  //Listenner del contenido de las cards
+  listennerCard(nameCard);
 }

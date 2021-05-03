@@ -1,5 +1,5 @@
 //Array donde almacenamos las entradas
-var entradas = [];
+export var entradas = [];
 
 //Función que recibe los .value del form y los formatea a JSON para añadirlos a las entradas
 export let creaNuevaEntrada = (
@@ -24,3 +24,8 @@ let addNuevaEntrada = (nuevaEntrada) => entradas.push(nuevaEntrada);
 
 //Devolvemos el registro
 export var obtenerEntradas = () => entradas;
+
+//Modificamos las entradas
+export var eliminaEntrada = (id) => {
+  entradas.splice(id, 1);
+};
