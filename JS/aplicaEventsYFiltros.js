@@ -8,8 +8,8 @@ import {
   compruebaCamposVacios,
   exponeCamposVacios,
 } from "./compruebaCampos.js";
-import { vaciarCampos } from "./modificadoresVisualesCampos.js";
 import { generadorCard } from "./adjuntaTarjetas.js";
+import { modificaTarjeta } from "./modificadorTarjeta.js";
 export let aplicaEventListennersYFiltros = () => {
   /*Validamos el campo nombre y aplicamos el event listenner
   junto con una restriccion de 15 caracteres max */
@@ -42,7 +42,8 @@ export let aplicaEventListennersYFiltros = () => {
     }
   });
 
-  //////////////////////////////
+  ///////////Events y Filtros de los campos del Offcanvas(modificacion de tarjetas)///////////
+
   /*Validamos el campo nombre y aplicamos el event listenner
   junto con una restriccion de 15 caracteres max */
   validacionYEventListenner("#nombreModificacion", 15);
@@ -62,12 +63,8 @@ export let aplicaEventListennersYFiltros = () => {
       compruebaCampos(".campoInvalido") &&
       compruebaCamposVacios(".groupModificacion")
     ) {
-      //Cerramos el offCanvas
-      $("#closeWindow").click();
-
-      //Vaciamos los campos para la siguiente utilización
-      vaciarCampos(".groupModificacion");
-      console.log("hola");
+      //Desencadenamos la acción de modificar la tarjeta
+      modificaTarjeta("id");
     } else {
       //Señala los campos vacios del form
       exponeCamposVacios(".groupModificacion");

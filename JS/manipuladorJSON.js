@@ -29,3 +29,16 @@ export var obtenerEntradas = () => entradas;
 export var eliminaEntrada = (id) => {
   entradas.splice(id, 1);
 };
+
+export var modificaEntrada = (
+  id,
+  nuevoNombre,
+  nuevaDescripcion,
+  nuevoPrecio,
+  nuevoStock
+) => {
+  (entradas[id].nombre = nuevoNombre),
+    (entradas[id].descripcion = nuevaDescripcion),
+    (entradas[id].precio = nuevoPrecio),
+    (entradas[id].stock = nuevoStock);
+};

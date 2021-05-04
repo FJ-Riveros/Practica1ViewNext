@@ -15,11 +15,13 @@ export function destruyeDisplayCards() {
   $(".tarjetas").html("");
 }
 
+//Sirve para almacenar el valor de la tarjeta que ha solicitado una modificación
+var id;
 //Aplica los listenners de las Cards
 export function listennerCard(idCard) {
   $(`${idCard} div.card-header span.modify`).click(function (e) {
     e.preventDefault();
-    let id = $(this).parents(".card").attr("id").slice(5);
+    id = $(this).parents(".card").attr("id").slice(5);
     var myOffcanvas = document.getElementById("offcanvasRight");
 
     //Listenner para cuando el offcanvas sea abierto
@@ -29,9 +31,17 @@ export function listennerCard(idCard) {
 
       //Reseteamos los colores y mensajes del form
       eliminaError(".form-control");
-      console.log("hidden");
+    });
+    //Listenner para cuando el offcanvas sea cerrado
+    myOffcanvas.addEventListener("hidden.bs.offcanvas", function () {
+      //Vaciamos todos los campos
+      vaciarCampos(".groupModificacion");
+
+      //Reseteamos los colores y mensajes del form
+      eliminaError(".groupModificacion");
     });
   });
+
   $(`${idCard} div.card-header img.delete`).click(function () {
     let id = $(this).parents(".card").attr("id").slice(5);
     //Eliminamos la entrada
@@ -67,4 +77,9 @@ export function presentacionCards(entradasActuales, nameCard) {
 
   //Listenner del contenido de las cards
   listennerCard(nameCard);
+}
+
+//Nos devuelve el ID de la tarjeta que ha solicitado una modificación
+export function IDTarjetaAModificar() {
+  return id - 1;
 }
