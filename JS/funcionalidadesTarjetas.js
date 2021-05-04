@@ -2,6 +2,7 @@ import { entradas, eliminaEntrada } from "./manipuladorJSON.js";
 import { adjuntarTarjeta } from "./adjuntaTarjetas.js";
 import { obtenerEntradas } from "./manipuladorJSON.js";
 import { vaciarCampos, eliminaError } from "./modificadoresVisualesCampos.js";
+import { rellenaCamposModificacion } from "./rellenaCamposModificacion.js";
 
 //Recorre el registro y muestra todas las Cards
 export function muestraCardsActuales(registro) {
@@ -22,6 +23,10 @@ export function listennerCard(idCard) {
   $(`${idCard} div.card-header span.modify`).click(function (e) {
     e.preventDefault();
     id = $(this).parents(".card").attr("id").slice(5);
+
+    //Rellenamos los campos del OffCanvas con los datos originales de la tarjeta a modificar
+    rellenaCamposModificacion(id - 1);
+
     var myOffcanvas = document.getElementById("offcanvasRight");
 
     //Listenner para cuando el offcanvas sea abierto
