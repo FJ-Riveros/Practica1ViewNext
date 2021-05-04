@@ -1,6 +1,7 @@
 import { entradas, eliminaEntrada } from "./manipuladorJSON.js";
 import { adjuntarTarjeta } from "./adjuntaTarjetas.js";
 import { obtenerEntradas } from "./manipuladorJSON.js";
+import { vaciarCampos, eliminaError } from "./modificadoresVisualesCampos.js";
 
 //Recorre el registro y muestra todas las Cards
 export function muestraCardsActuales(registro) {
@@ -20,8 +21,14 @@ export function listennerCard(idCard) {
     e.preventDefault();
     let id = $(this).parents(".card").attr("id").slice(5);
     var myOffcanvas = document.getElementById("offcanvasRight");
+
+    //Listenner para cuando el offcanvas sea abierto
     myOffcanvas.addEventListener("shown.bs.offcanvas", function () {
-      // do something...
+      //Vaciamos todos los campos
+      vaciarCampos(".form-control");
+
+      //Reseteamos los colores y mensajes del form
+      eliminaError(".form-control");
       console.log("hidden");
     });
   });

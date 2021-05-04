@@ -8,6 +8,7 @@ import {
   compruebaCamposVacios,
   exponeCamposVacios,
 } from "./compruebaCampos.js";
+import { vaciarCampos } from "./modificadoresVisualesCampos.js";
 import { generadorCard } from "./adjuntaTarjetas.js";
 export let aplicaEventListennersYFiltros = () => {
   /*Validamos el campo nombre y aplicamos el event listenner
@@ -56,15 +57,20 @@ export let aplicaEventListennersYFiltros = () => {
   //Validamos el campo Stock y aplicamos el event listenner
   filtroStock("#stockModificacion");
   $("#enviarModificacion").click((e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (
       compruebaCampos(".campoInvalido") &&
       compruebaCamposVacios(".groupModificacion")
     ) {
+      //Cerramos el offCanvas
+      $("#closeWindow").click();
+
+      //Vaciamos los campos para la siguiente utilización
+      vaciarCampos(".groupModificacion");
       console.log("hola");
     } else {
       //Señala los campos vacios del form
-      exponeCamposVacios(".form-control");
+      exponeCamposVacios(".groupModificacion");
     }
   });
 };

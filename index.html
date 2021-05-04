@@ -42,34 +42,36 @@
       </div>
   </form>
 
+  <!--Campo donde se almacenan las tarjetas-->
   <div class="row tarjetas mt-4"></div>
 
-
+  <!--Offcanvas para la modificación de tarjetas, normalmente está oculto-->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
       <h5 id="offcanvasRightLabel">Modificación</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <button type="button" class="btn-close text-reset" id="closeWindow" data-bs-dismiss="offcanvas"
+        aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
       <form action="#index" method="get">
         <div class="container mt-4">
-          <div class="mb-3 col-6">
-            <label for="labelNombre" class="form-label">Nombre</label>
+          <div class="mb-3 col-12">
+            <label for="labelNombre" class="form-label saltoLinea">Nombre</label>
             <input type="text" class="form-control-sm groupModificacion" id="nombreModificacion"
               placeholder="No se admiten números ni carácteres especiales" required>
           </div>
           <div class="mb-3 col-12">
             <label for="labelDescripcion" class=" form-label saltoLinea">Descripción</label>
             <textarea style="resize: none" class="form-control-sm groupModificacion" id="descripcionModificacion"
-              rows="3" placeholder="Máximo de 100 carácteres" required></textarea>
+              rows="5" placeholder="Máximo de 100 carácteres" required></textarea>
           </div>
-          <div class="mb-3 col-2">
-            <label for="labelPrecioModificacion" class="form-label">Precio</label>
+          <div class="mb-3 col-10">
+            <label for="labelPrecioModificacion" class="form-label saltoLinea">Precio</label>
             <input type="text" class="form-control-sm groupModificacion" id="precioModificacion" placeholder=""
               required>
           </div>
-          <div class="mb-3 col-2  ">
-            <label for="labelStock" class="form-label">Stock</label>
+          <div class="mb-3 col-10 ">
+            <label for="labelStock" class="form-label saltoLinea">Stock</label>
             <input type="text" class="form-control-sm groupModificacion" id="stockModificacion" placeholder="" required>
           </div>
           <div class="mb-3 col-md-2 " id="barraEnviarModificacion">
