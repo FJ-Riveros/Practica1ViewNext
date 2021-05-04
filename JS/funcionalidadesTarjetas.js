@@ -16,9 +16,14 @@ export function destruyeDisplayCards() {
 
 //Aplica los listenners de las Cards
 export function listennerCard(idCard) {
-  $(`${idCard} div.card-header img.modify`).click(function (e) {
+  $(`${idCard} div.card-header span.modify`).click(function (e) {
+    e.preventDefault();
     let id = $(this).parents(".card").attr("id").slice(5);
-    console.log(id);
+    var myOffcanvas = document.getElementById("offcanvasRight");
+    myOffcanvas.addEventListener("shown.bs.offcanvas", function () {
+      // do something...
+      console.log("hidden");
+    });
   });
   $(`${idCard} div.card-header img.delete`).click(function () {
     let id = $(this).parents(".card").attr("id").slice(5);

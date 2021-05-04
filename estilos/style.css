@@ -53,10 +53,6 @@
   background-image: url(../media/pencil.png);
 }
 
-svg {
-  pointer-events: none;
-}
-
-path {
-  pointer-events: none;
+.saltoLinea {
+  display: block;
 }
