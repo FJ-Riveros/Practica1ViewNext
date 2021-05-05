@@ -51,7 +51,7 @@ export const adjuntarTarjeta = (registro, numRegistro) => {
           <div class="col-4 font-weight-medium">
               ${registro.precio}€
             </div>
-            <div class=" col-5 flex-end font-weight-medium ">
+            <div class=" col-7 flex-end font-weight-medium ">
               Cantidad: ${registro.stock}
             </div>
           </div>
