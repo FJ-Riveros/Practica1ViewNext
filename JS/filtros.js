@@ -4,10 +4,16 @@ import {
   campoCorrecto,
 } from "./modificadoresVisualesCampos.js";
 import { campoVacio } from "./compruebaCampos.js";
+import { busquedaNombreExistente } from "./manipuladorJSON.js";
 
 /*valida el campo que se le pase con restricciones de numero máximo de carácteres, sólo letras y
-añade el event listenner correspondiente*/
-export function validacionYEventListenner(idElemento, caracteresMax) {
+añade el event listenner correspondiente, si tenemos true comprobamos también que el valor del campo
+no se repita en las tarjetas*/
+export function validacionYEventListenner(
+  idElemento,
+  caracteresMax,
+  comprobacionRepetidos
+) {
   $(`${idElemento}`).focusout(() => {
     eliminaError(idElemento);
     if (!filtroLongitud(idElemento, caracteresMax)) {
@@ -20,6 +26,12 @@ export function validacionYEventListenner(idElemento, caracteresMax) {
         idElemento,
         "No puede contener números o carácteres especiales"
       );
+    } else if (
+      busquedaNombreExistente($(idElemento).val()) &&
+      !campoVacio(idElemento) &&
+      comprobacionRepetidos
+    ) {
+      adjuntaError(idElemento, "El nombre indicado ya existe en otra tarjeta");
     } else if (!campoVacio(idElemento)) {
       campoCorrecto(idElemento);
     }

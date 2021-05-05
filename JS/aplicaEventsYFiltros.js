@@ -12,12 +12,14 @@ import { generadorCard } from "./adjuntaTarjetas.js";
 import { modificaTarjeta } from "./modificadorTarjeta.js";
 export let aplicaEventListennersYFiltros = () => {
   /*Validamos el campo nombre y aplicamos el event listenner
-  junto con una restriccion de 15 caracteres max */
-  validacionYEventListenner("#nombre", 15);
+  junto con una restriccion de 15 caracteres max. Con true indicamos que queremos comprobar
+  si el campo del form se repite. */
+  validacionYEventListenner("#nombre", 15, true);
 
   /*Validamos el campo descripcion y aplicamos el event listenner
-  junto con una restriccion de 15 caracteres max */
-  validacionYEventListenner("#descripcion", 100);
+  junto con una restriccion de 15 caracteres max. Con false indicamos que no queremos comprobar
+  si el campo del form se repite. */
+  validacionYEventListenner("#descripcion", 100, false);
 
   //Validamos el campo Precio y aplicamos el event listenner
   filtroPrecio("#precio");
@@ -46,11 +48,11 @@ export let aplicaEventListennersYFiltros = () => {
 
   /*Validamos el campo nombre y aplicamos el event listenner
   junto con una restriccion de 15 caracteres max */
-  validacionYEventListenner("#nombreModificacion", 15);
+  validacionYEventListenner("#nombreModificacion", 15, true);
 
   /*Validamos el campo descripcion y aplicamos el event listenner
   junto con una restriccion de 15 caracteres max */
-  validacionYEventListenner("#descripcionModificacion", 100);
+  validacionYEventListenner("#descripcionModificacion", 100, false);
 
   //Validamos el campo Precio y aplicamos el event listenner
   filtroPrecio("#precioModificacion");

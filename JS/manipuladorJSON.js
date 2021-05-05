@@ -42,3 +42,16 @@ export var modificaEntrada = (
     (entradas[id].precio = nuevoPrecio),
     (entradas[id].stock = nuevoStock);
 };
+
+export const busquedaNombreExistente = (nombreInput) => {
+  let entradas = obtenerEntradas();
+  /*entradas.forEach((element) => {
+    if (element.nombre == nombreInput) return true;
+  });*/
+  for (let i = 0; i < entradas.length; i++) {
+    if (entradas[i].nombre == nombreInput) return true;
+  }
+  console.log(obtenerEntradas());
+  console.log(nombreInput);
+  return false;
+};
