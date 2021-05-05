@@ -6,7 +6,7 @@ import {
 import { campoVacio } from "./compruebaCampos.js";
 import { busquedaNombreExistente } from "./manipuladorJSON.js";
 
-/*valida el campo que se le pase con restricciones de numero máximo de carácteres, sólo letras y
+/*Valida el campo que se le pase con restricciones de numero máximo de carácteres, sólo letras y
 añade el event listenner correspondiente, si tenemos true comprobamos también que el valor del campo
 no se repita en las tarjetas*/
 export function validacionYEventListenner(
@@ -16,22 +16,26 @@ export function validacionYEventListenner(
 ) {
   $(`${idElemento}`).focusout(() => {
     eliminaError(idElemento);
+    //Comprueba si cumple con la longitud
     if (!filtroLongitud(idElemento, caracteresMax)) {
       adjuntaError(
         idElemento,
         `La longitud debe de ser de ${caracteresMax} caracteres como máximo`
       );
+      //Comprueba si cumple con los carácteres determinados y el campo no esté vacio
     } else if (!filtroSoloLetras(idElemento) && !campoVacio(idElemento)) {
       adjuntaError(
         idElemento,
         "No puede contener números o carácteres especiales"
       );
+      //Comprueba que el nombre no exista en otra tarjeta y el campo no esté vacio
     } else if (
       busquedaNombreExistente($(idElemento).val()) &&
       !campoVacio(idElemento) &&
       comprobacionRepetidos
     ) {
       adjuntaError(idElemento, "El nombre indicado ya existe en otra tarjeta");
+      //Comprueba que el campo no esté vacio
     } else if (!campoVacio(idElemento)) {
       campoCorrecto(idElemento);
     }
